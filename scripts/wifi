@@ -1,0 +1,10 @@
+#!/bin/sh
+# start a wifi profile
+
+if [ $# != 1 ]; then
+	echo "Start a WiFi network profile."
+	echo "Usage: $0 <profile>"
+	exit 1
+fi
+
+sudo netctl start $1 && echo "Connection established."

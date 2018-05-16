@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec java -jar /home/mc/programs/minecraft/game/Minecraft.jar

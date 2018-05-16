@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Switch off all active xrandr outputs, except for the laptop monitor.
+#
+
+while read -r line; do
+  f5="$(cut -d ' ' -f5 <<< $line)"
+  if [[ "$f5" && "$f5" != "LVDS1" ]]; then
+    args="$args --output $f5 --off"
+  fi
+done <<< "$(xrandr --listactivemonitors)"
+
+if [ "$args" ]; then
+  xrandr --output LVDS1 --auto $args;
+  sleep 1
+  jwm -restart
+fi

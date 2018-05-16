@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<JWM>
+
+    <!-- Other startup commands are in .xinitrc -->
+    <!--<StartupCommand>xbacklight -set 0 -time 0</StartupCommand>-->
+    <StartupCommand>xterm -rv -e ~/.scripts/startup</StartupCommand>
+
+    <!-- The root menu. -->
+    <RootMenu onroot="3">
+        <Program label="Terminal">xterm -rv</Program>
+        <Separator/>
+        <Program label="Sreenshot">maim -s ~/pictures/screenshots/$(date +%F-%T).png</Program>
+        <Separator/>
+        <Menu label="JWM">
+            <Restart label="Restart"/>
+            <Exit label="Exit"/>
+        </Menu>
+        <Menu label="Exit">
+            <Program label="Reboot">systemctl reboot</Program>
+            <Program label="Shut down">systemctl poweroff</Program>
+        </Menu>
+    </RootMenu>
+
+    <!-- Tray at the bottom. -->
+    <Tray x="0" y="-1" height="27" autohide="off">
+        <Spacer width="4"/>
+        <TrayButton label="Menu">root:3</TrayButton>
+        <TrayButton label="[_]">showdesktop</TrayButton>
+        <Pager labeled="false"/>
+        <Spacer width="4"/>
+        <TaskList maxwidth="256"/>
+        <!-- <Dock/> -->
+        <Spacer width="4"/>
+        <Clock format="%H:%M"></Clock>
+        <Spacer width="4"/>
+    </Tray>
+
+    <!-- Visual Styles -->
+    <WindowStyle>
+        <Width>1</Width>
+        <Height>21</Height>
+        <Corner>0</Corner>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#555555</Background>
+        <Outline>#000000</Outline>
+        <Opacity>1.0</Opacity>
+        <Active>
+            <Foreground>#FFFFFF</Foreground>
+            <Background>#0077CC</Background>
+            <Outline>#000000</Outline>
+            <Opacity>1.0</Opacity>
+        </Active>
+    </WindowStyle>
+    <TrayStyle group="true" list="desktop"> # list="all"
+        <Background>#333333</Background>
+        <Foreground>#FFFFFF</Foreground>
+        <Outline>#000000</Outline>
+        <Opacity>1.0</Opacity>
+    </TrayStyle>
+    <!-- <TaskListStyle>
+        <Outline>#134563</Outline>
+        <Active>
+            <Outline>#000000</Outline>
+        </Active>
+    </TaskListStyle> -->
+    <PagerStyle>
+        <Outline>#000000</Outline>
+        <Foreground>#555555</Foreground>
+        <Background>#333333</Background>
+        <Text>#FFFFFF</Text>
+        <Active>
+            <Foreground>#0077CC</Foreground>
+            <Background>#004488</Background>
+        </Active>
+    </PagerStyle>
+    <MenuStyle>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#333333</Background>
+        <Outline>#000000</Outline>
+        <Active>
+            <Foreground>#FFFFFF</Foreground>
+            <Background>#0077CC</Background>
+        </Active>
+        <Opacity>1.0</Opacity>
+    </MenuStyle>
+    <PopupStyle enabled="false">
+        <Foreground>#000000</Foreground>
+        <Background>#999999</Background>
+    </PopupStyle>
+
+    <!-- Virtual Desktops -->
+    <!-- Desktop tags can be contained within Desktops for desktop names. -->
+    <Desktops width="2" height="2">
+        <!-- Default background. Note that a Background tag can be
+              contained within a Desktop tag to give a specific background
+              for that desktop.
+         -->
+        <Background type="solid">#111111</Background>
+    </Desktops>
+
+    <!-- Double click speed (in milliseconds) -->
+    <DoubleClickSpeed>400</DoubleClickSpeed>
+
+    <!-- Double click delta (in pixels) -->
+    <DoubleClickDelta>2</DoubleClickDelta>
+
+    <!-- The focus model (sloppy or click) -->
+    <FocusModel>click</FocusModel>
+
+    <!-- The snap mode (none, screen, or border) -->
+    <SnapMode distance="10">border</SnapMode>
+
+    <!-- The move mode (outline or opaque) -->
+    <MoveMode>outline</MoveMode>
+
+    <!-- The resize mode (outline or opaque) -->
+    <ResizeMode>outline</ResizeMode>
+
+    <!-- Key bindings -->
+    <Key key="Up">up</Key>
+    <Key key="Down">down</Key>
+    <Key key="Right">right</Key>
+    <Key key="Left">left</Key>
+    <Key key="h">left</Key>
+    <Key key="j">down</Key>
+    <Key key="k">up</Key>
+    <Key key="l">right</Key>
+    <Key key="Return">select</Key>
+    <Key key="Escape">escape</Key>
+
+    <Key mask="A" key="Tab">nextstacked</Key>
+    <Key mask="AS" key="Tab">prevstacked</Key>
+    <Key mask="A" key="F4">close</Key>
+    <Key mask="A" key="#">desktop#</Key>
+    <Key mask="A" key="F1">root:3</Key>
+    <Key mask="A" key="F2">window</Key>
+    <Key mask="A" key="F10">maximize</Key>
+    <Key mask="A" key="Right">rdesktop</Key>
+    <Key mask="A" key="Left">ldesktop</Key>
+    <Key mask="A" key="Up">udesktop</Key>
+    <Key mask="A" key="Down">ddesktop</Key>
+
+    <Key mask="A" key="d">showdesktop</Key>
+
+    <Key mask="CA" key="r">restart</Key>
+    <Key mask="CA" key="x">exit</Key>
+
+    <Key mask="C" key="F4">exec: xbacklight -dec 10 -time 0</Key>
+    <Key mask="C" key="F5">exec: xbacklight -inc 10 -time 0</Key>
+
+    <Key mask="C" key="F10">exec: amixer -q sset Master toggle</Key>
+    <Key mask="C" key="F11">exec: amixer -q sset Master 5%-</Key>
+    <Key mask="C" key="F12">exec: amixer -q sset Master 5%+</Key>
+
+    <Key mask="CA" key="Right">maxright</Key>
+    <Key mask="CA" key="Left">maxleft</Key>
+    <Key mask="CA" key="Up">maxtop</Key>
+    <Key mask="CA" key="Down">maxbottom</Key>
+
+    <Key mask="A" key="t">exec: xterm -rv</Key>
+    <Key mask="A" key="g">exec: geany</Key>
+    <Key mask="A" key="b">exec: dillo</Key>
+    <Key mask="A" key="l">exec: leafpad</Key>
+    <Key mask="A" key="p">exec: ~/.scripts/current_project</Key>
+    <Key mask="A" key="q">exec: ~/.scripts/custom_dmenu</Key>
+    <Key mask="A" key="s">exec: maim ~/pictures/screenshots/$(date +%F-%T).png</Key>
+    <!--<Key mask="A" key="q">exec: dmenu_run -fn clean</Key>-->
+
+    <Key mask="CA" key="w">exec: ~/.scripts/reset_lvds1</Key>
+    <Key mask="CA" key="v">exec: ~/.scripts/output_vga1</Key>
+    <Key mask="CA" key="a">exec: ~/.scripts/output_connected</Key>
+    <Key mask="CA" key="b">exec: ~/.scripts/battery_level</Key>
+
+</JWM>

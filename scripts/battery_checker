@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Simple script for displaying the battery level.
+#
+
+cd /sys/class/power_supply/BAT0/
+while true; do
+  status="$(cat status)"
+  capacity="$(cat capacity)"
+  if [[ "$status" = "Discharging" && "$capacity" -lt 15 ]]; then
+    notify-send -u critical "Battery low!\nCapacity: ${capacity}%"
+  fi
+  sleep 300
+done

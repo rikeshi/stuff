@@ -1,0 +1,37 @@
+#!/bin/bash
+
+trap onsigint SIGINT
+
+onsigint() {
+  echo
+  exit 1
+}
+
+# connect to wifi (default=miku)
+printf "Connect to: "
+read -r network
+if [ -z $network ]; then
+  network="miku"
+fi
+.scripts/wifi $network
+
+if [ $(netctl is-active $network) == "inactive" ]; then
+  exit 1
+fi
+
+# wait a bit (15 works)
+i=0
+while [ $i -lt 15 ]; do
+  printf .
+  sleep 0.5
+  let i=i+1
+done
+echo
+
+# run updater
+#pacaur -Syu
+sudo pacman -Syu
+
+# wait for keypress
+echo
+read -n 1 -s -p "Press key to exit..."

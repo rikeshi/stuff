@@ -1,0 +1,9 @@
+#!/bin/sh
+# www.fsi.uni-tuebingen.de/studium/tipps/vpnc
+
+sudo openconnect                                                                             \
+	--no-system-trust                                                                    \
+	--setuid $(whoami)                                                                   \
+	--cafile /etc/ssl/certs/Deutsche_Telekom_Root_CA_2.pem                               \
+	--servercert sha256:831fa4643e532af670ed3be436776ca7f23d089b4ad42a30faa32c443d7a87a8 \
+	ras.uni-tuebingen.de

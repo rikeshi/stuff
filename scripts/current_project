@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Simple user script to load all files for a project.
+# Used with JWM keybindings.
+#
+
+#cd ~/manjaro_files/docs/uni/langvarch/
+#mupdf p273-ellison.pdf &
+#cd code/newstuff/
+#xterm -rv &
+#geany metrics_file.rs main_clean.lua &
+opera '~/downloads/[v5]LVC.html' &

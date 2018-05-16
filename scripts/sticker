@@ -1,0 +1,6 @@
+#!/bin/bash
+
+geany &
+xterm -rv -e "~/.scripts/vpn" &
+xterm -rv -e "ssh turing" &
+xterm -rv -e "cd ~/repos/sticker/"

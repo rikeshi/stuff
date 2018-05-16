@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PATH="${PATH}:/home/mc/.dmenu"
+dmenu_run -fn "Schumacher Clean"

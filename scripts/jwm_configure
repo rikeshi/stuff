@@ -1,0 +1,4 @@
+# Configure the Joe's Window Manager build.
+# Disable all extra features, live on the edge.
+
+./configure --disable-confirm --disable-icons --disable-png --disable-cairo --disable-rsvg --disable-jpeg --disable-xft --disable-xrender --disable-fribidi --disable-xpm --disable-xbm --disable-shape --disable-xmu --disable-xinerama --disable-nls --disable-rpath --disable-debug

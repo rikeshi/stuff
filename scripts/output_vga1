@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# xrandr --output VGA1 --auto --scale-from 1366x768 --right-of LVDS1
+xrandr --output VGA1 --auto --right-of LVDS1
+# xrandr --output LVDS1 --auto --primary --output VGA1 --scale-from 1366x768 --auto
+sleep 1
+jwm -restart

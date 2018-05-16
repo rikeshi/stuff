@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# make Etcher USB Image Flasher callable trough dmenu
+# installed AUR package: etcher
+exec /opt/Etcher/etcher-electron
