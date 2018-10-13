@@ -1,4 +1,4 @@
 #!/bin/bash
 
 PATH="${PATH}:/home/mc/.dmenu"
-dmenu_run -fn "Schumacher Clean"
+dmenu_run -fn 'Misc Fixed-15'
