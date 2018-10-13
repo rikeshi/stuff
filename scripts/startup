@@ -13,25 +13,18 @@ read -r network
 if [ -z $network ]; then
   network="miku"
 fi
-.scripts/wifi $network
 
-if [ $(netctl is-active $network) == "inactive" ]; then
-  exit 1
+if [[ $network = "wired" ]]; then
+  sudo dhcpcd > /dev/null
+elif [[ $(netctl list) = *$network* ]]; then
+  ~/.scripts/wifi $network
+else
+  echo "Network profile $network does not exist."
 fi
-
-# wait a bit (15 works)
-i=0
-while [ $i -lt 15 ]; do
-  printf .
-  sleep 0.5
-  let i=i+1
-done
-echo
-
-# run updater
-#pacaur -Syu
-sudo pacman -Syu
+# exit on failed connection
+if [ $? -ne 0 ]; then exit 1; fi
 
 # wait for keypress
 echo
 read -n 1 -s -p "Press key to exit..."
+echo
