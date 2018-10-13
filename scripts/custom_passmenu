@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PATH="${PATH}:/home/mc/.dmenu"
+passmenu -fn 'Misc Fixed-15'
