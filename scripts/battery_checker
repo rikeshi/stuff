@@ -8,7 +8,10 @@ while true; do
   status="$(cat status)"
   capacity="$(cat capacity)"
   if [[ "$status" = "Discharging" && "$capacity" -lt 15 ]]; then
-    notify-send -u critical "Battery low!\nCapacity: ${capacity}%"
+    xterm -fn *-fixed-*-*-*-18-* -bg red -fg yellow \
+        -geometry 38x1+1550+22 \
+        -T "Battery low! Capacity: ${capacity}%" \
+        -e 'read -n 1 -s -p "        Press key to exit..."'        
   fi
   sleep 300
 done

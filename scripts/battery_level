@@ -1,3 +1,7 @@
 #!/bin/bash
 
-notify-send "Battery: $(cat /sys/class/power_supply/BAT0/capacity)% ($(cat /sys/class/power_supply/BAT0/status))"
+# ROWSxCOLUMNS+X+Y
+xterm -fn *-fixed-*-*-*-18-* -bg gray \
+      -geometry 38x1+1550+22 \
+      -T "Battery: $(cat /sys/class/power_supply/BAT0/capacity)% ($(cat /sys/class/power_supply/BAT0/status))" \
+      -e 'read -n 1 -s -p "        Press key to close..."'
