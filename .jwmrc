@@ -2,12 +2,13 @@
 <JWM>
 
     <!-- Other startup commands are in .xinitrc -->
-    <!--<StartupCommand>xbacklight -set 0 -time 0</StartupCommand>-->
-    <StartupCommand>xterm -rv -e ~/.scripts/startup</StartupCommand>
+    <StartupCommand>xbacklight -set 1 -time 0</StartupCommand>
+    <StartupCommand>redshift -l 49:8.5</StartupCommand>
+    <StartupCommand>xterm -rv -fn *-fixed-*-*-*-18-* -e "~/.scripts/startup"</StartupCommand>
 
     <!-- The root menu. -->
     <RootMenu onroot="3">
-        <Program label="Terminal">xterm -rv</Program>
+        <Program label="Terminal">xterm -rv -fn *-fixed-*-*-*-18-*</Program>
         <Separator/>
         <Program label="Sreenshot">maim -s ~/pictures/screenshots/$(date +%F-%T).png</Program>
         <Separator/>
@@ -37,8 +38,9 @@
 
     <!-- Visual Styles -->
     <WindowStyle>
+        <Font>*-fixed-*-*-*-18-*</Font>
         <Width>1</Width>
-        <Height>21</Height>
+        <Height>22</Height>
         <Corner>0</Corner>
         <Foreground>#FFFFFF</Foreground>
         <Background>#555555</Background>
@@ -52,6 +54,7 @@
         </Active>
     </WindowStyle>
     <TrayStyle group="true" list="desktop"> # list="all"
+        <Font>*-fixed-*-*-*-18-*</Font>
         <Background>#333333</Background>
         <Foreground>#FFFFFF</Foreground>
         <Outline>#000000</Outline>
@@ -64,6 +67,7 @@
         </Active>
     </TaskListStyle> -->
     <PagerStyle>
+        <Font>*-fixed-*-*-*-18-*</Font>
         <Outline>#000000</Outline>
         <Foreground>#555555</Foreground>
         <Background>#333333</Background>
@@ -74,6 +78,7 @@
         </Active>
     </PagerStyle>
     <MenuStyle>
+        <Font>*-fixed-*-*-*-18-*</Font>
         <Foreground>#FFFFFF</Foreground>
         <Background>#333333</Background>
         <Outline>#000000</Outline>
@@ -84,6 +89,7 @@
         <Opacity>1.0</Opacity>
     </MenuStyle>
     <PopupStyle enabled="false">
+        <Font>*-fixed-*-*-*-18-*</Font>
         <Foreground>#000000</Foreground>
         <Background>#999999</Background>
     </PopupStyle>
@@ -139,12 +145,12 @@
     <Key mask="A" key="Left">ldesktop</Key>
     <Key mask="A" key="Up">udesktop</Key>
     <Key mask="A" key="Down">ddesktop</Key>
-
     <Key mask="A" key="d">showdesktop</Key>
 
     <Key mask="CA" key="r">restart</Key>
     <Key mask="CA" key="x">exit</Key>
 
+    <Key mask="C" key="F3">exec: xbacklight -set 1 -time 0</Key>
     <Key mask="C" key="F4">exec: xbacklight -dec 10 -time 0</Key>
     <Key mask="C" key="F5">exec: xbacklight -inc 10 -time 0</Key>
 
@@ -157,14 +163,13 @@
     <Key mask="CA" key="Up">maxtop</Key>
     <Key mask="CA" key="Down">maxbottom</Key>
 
-    <Key mask="A" key="t">exec: xterm -rv</Key>
+    <Key mask="A" key="t">exec: xterm -rv -fn *-fixed-*-*-*-18-*</Key>
     <Key mask="A" key="g">exec: geany</Key>
     <Key mask="A" key="b">exec: dillo</Key>
     <Key mask="A" key="l">exec: leafpad</Key>
-    <Key mask="A" key="p">exec: ~/.scripts/current_project</Key>
     <Key mask="A" key="q">exec: ~/.scripts/custom_dmenu</Key>
+    <Key mask="A" key="p">exec: ~/.scripts/custom_passmenu</Key>
     <Key mask="A" key="s">exec: maim ~/pictures/screenshots/$(date +%F-%T).png</Key>
-    <!--<Key mask="A" key="q">exec: dmenu_run -fn clean</Key>-->
 
     <Key mask="CA" key="w">exec: ~/.scripts/reset_lvds1</Key>
     <Key mask="CA" key="v">exec: ~/.scripts/output_vga1</Key>
