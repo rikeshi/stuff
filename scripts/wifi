@@ -1,10 +1,52 @@
-#!/bin/sh
+#!/bin/bash
 # start a wifi profile
 
 if [ $# != 1 ]; then
-	echo "Start a WiFi network profile."
-	echo "Usage: $0 <profile>"
-	exit 1
+  echo "Start a WiFi network profile."
+  echo "Usage: $0 <profile>"
+  exit -1
 fi
 
-sudo netctl start $1 && echo "Connection established."
+# check if the profile exists
+found=$(find /etc/netctl -name $1)
+if [ $found = "" ]; then
+    echo "No such profile."
+    exit 1
+fi
+
+# check if the profile is already active
+if [ $(netctl is-active $1) = "active" ]; then
+    echo "Already connected."
+    exit 0
+fi
+
+# check if another profile is active
+#case "$(netctl list)" in
+#    *\**)
+#        sudo netctl stop-all
+#        echo "Switching connection to $1."
+#        ;;
+#esac
+if [[ $(netctl list) = *"*"* ]]; then
+  sudo netctl stop-all
+  echo "Switching connection to $1."
+fi
+
+# start the profile
+sudo netctl start $1 &> /dev/null
+
+# wait for max 30 seconds
+ping -q -t 30 -w 1 -c 1 1.1.1.1 &> /dev/null
+#case "$(netctl list)" in
+#    *\+*)
+#        echo "Connection established."
+#        ;;
+#    *)
+#        echo "Connection could not be established within 30 seconds."
+#        exit 1
+#esac
+if [[ $(netctl list) = *"+"* ]]; then
+  echo "Connection established."
+else
+  echo "Connection could not be established within 30 seconds."
+fi
