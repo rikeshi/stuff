@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <passphrase>"
+  exit 1
+fi
+
+sudo create_ap wlp5s0 enp4s0 thinknet $1
